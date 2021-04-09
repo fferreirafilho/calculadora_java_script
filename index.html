@@ -20,7 +20,18 @@
                 break;
 
                 case 'resultado':
-                    var valo_texto = eval(document.getElementById('recuperar').value);
+                    if(document.getElementById('teste').value==0){
+                        var valor_texto = eval(document.getElementById('recuperar').value);
+                        document.getElementById('recuperar').value = valor_texto;
+                    }else{
+                        var nome = document.getElementById('recuperar').value;
+                        var recortar = nome.slice(0,-1);
+                        document.getElementById('recuperar').value = recortar;
+                        var valor_texto = eval(document.getElementById('recuperar').value);
+                        document.getElementById('recuperar').value = valor_texto;
+                    }
+                    
+
                 break;
 
                 case 'valor':
@@ -61,7 +72,7 @@
                     <div class="row">
                         <button onclick="calcular('clear','C')" type="button" class="btn btn-lg btn-dark font-weight-light clear">C</button>
                         <button onclick="calcular('acao','/')" type="button" class="btn btn-lg btn-dark font-weight-light ">/</button>
-                        <button onclick="calcular('acao','x')" type="button" class="btn btn-lg btn-dark font-weight-light ">x</button>
+                        <button onclick="calcular('acao','*')" type="button" class="btn btn-lg btn-dark font-weight-light ">x</button>
                     </div>
 
                     <div class="row">
