@@ -11,19 +11,55 @@
     <!-- Estilo customizado -->
     <link rel="stylesheet" href="css/estilo.css">
 
+    <script>
+        function calcular(tipo,valor){
+            switch(tipo){
+                case 'clear':
+                    document.getElementById('recuperar').value = '';
+                    document.getElementById('teste').value= 0;
+                break;
+
+                case 'resultado':
+                    var valo_texto = eval(document.getElementById('recuperar').value);
+                break;
+
+                case 'valor':
+                    document.getElementById('recuperar').value += valor;
+                    document.getElementById('teste').value=0;
+                break;    
+
+                case 'acao':
+                    if(document.getElementById('teste').value==0){
+                        document.getElementById('recuperar').value += valor;
+                        document.getElementById('teste').value= 1;
+                    }else{
+                        var armazenar = valor;
+                        var nome = document.getElementById('recuperar').value;
+                        var recortar = nome.slice(0,-1);
+                        document.getElementById('recuperar').value = recortar;
+                        document.getElementById('recuperar').value += valor;
+                    }   
+                break;
+            }
+
+        }
+    </script>
+
     <title>Calculadora</title>
 </head>
 <body>
+
+    <input type="text" id="teste" style="display: none;" value="0">
 
     <div class="container">
         <div class="row">
             <div class="col d-flex justify-content-center">
 
                 <div class="calculadora">
-                    <input type="text" class="form-control resultado" placeholder="0" disabled="disabled" >
+                    <input type="text" id='recuperar' class="form-control resultado" placeholder="0" disabled="disabled" >
 
                     <div class="row">
-                        <button onclick="calcular('acao','C')" type="button" class="btn btn-lg btn-dark font-weight-light clear">C</button>
+                        <button onclick="calcular('clear','C')" type="button" class="btn btn-lg btn-dark font-weight-light clear">C</button>
                         <button onclick="calcular('acao','/')" type="button" class="btn btn-lg btn-dark font-weight-light ">/</button>
                         <button onclick="calcular('acao','x')" type="button" class="btn btn-lg btn-dark font-weight-light ">x</button>
                     </div>
@@ -46,7 +82,7 @@
                         <button onclick="calcular('valor','1')" type="button" class="btn btn-lg btn-dark font-weight-light">1</button>
                         <button onclick="calcular('valor','2')" type="button" class="btn btn-lg btn-dark font-weight-light ">2</button>
                         <button onclick="calcular('valor','3')" type="button" class="btn btn-lg btn-dark font-weight-light ">3</button>
-                        <button onclick="calcular('acao','=')" type="button" class="btn btn-lg btn-dark font-weight-light enter ">=</button>
+                        <button onclick="calcular('resultado','=')" type="button" class="btn btn-lg btn-dark font-weight-light enter ">=</button>
                     </div>
 
                     <div class="row" style="margin-top: -60px">
